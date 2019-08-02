@@ -1,9 +1,26 @@
-# Hyperledger Fabric with Google Cloud Platform
+Hyperledger Fabric with Google Cloud Platform
+---
+
+# 1. GCP VM Network
+
+## 1.1. VM IP Address
+
+| VM           | IP             | 
+| :----------: | :-------------: | 
+| `org1-1`     | **34.66.226.174**  |
+| `org1-2`     | **34.67.110.38**   | 
+| `org2-1`     | **35.232.221.188** | 
+| `org2-2`     | **35.222.162.181** | 
+| `orderer1`   | **35.232.167.182** | 
+| `orderer2`   | **34.67.71.72**    | 
+| `orderer3`   | **34.66.179.76**   | 
 
 
 
 
-| Container                         | Environment  | Port        |
+## 1.2. Hyperledger Network  Case
+
+| VM                         | IP  | 용도        |
 | :-------------------------------: | -----------: | :---------: |
 | `orderer.local.com`               |              | **7050**    |
 | `peer0.org1.local.com`            | Addr<br>CC_Listen_Addr<br>Event_Addr | **7051**<br>**7052**<br>**7053** |

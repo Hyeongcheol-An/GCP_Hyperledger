@@ -1,2 +1,0 @@
-Orderer1 VM
----

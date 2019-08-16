@@ -1,3 +1,0 @@
-Orderer3 VM
----
-

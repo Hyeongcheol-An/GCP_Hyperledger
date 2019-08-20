@@ -1,8 +1,10 @@
 OrdererOrgs:
   - Name: Orderer
     Domain: example.com
-    Template:
-      Count: 3
+    Specs:
+      - Hostname: orderer0
+      - Hostname: orderer1
+      - Hostname: orderer2
 
 PeerOrgs:
   - Name: Org1
@@ -14,7 +16,7 @@ PeerOrgs:
       Count: 1
   - Name: Org2
     Domain: org2.example.com
-    EnableNodeOUs: ture
+    EnableNodeOUs: true
     Template:
       Count: 2
     Users:

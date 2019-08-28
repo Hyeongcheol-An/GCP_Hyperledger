@@ -9,7 +9,7 @@ import helloworld_pb2_grpc
 
 
 def run():
-    channel = grpc.insecure_channel('localhost:50051')
+    channel = grpc.insecure_channel('34.66.226.174:50051')
     stub = helloworld_pb2_grpc.GreeterStub(channel)
     response = stub.SayHello(helloworld_pb2.HelloRequest(name='you'))
     print("Greeter client received: " + response.message)

@@ -1,7 +1,5 @@
 # Docker-compose up
 
-
-
 import docker
 
 client = docker.from_env()

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Upload</title>
+</head>
+<body>
+<fieldset>
+     <legend>Upload</legend>
+     <table>
+     <form action="UploadService">
+          <tr>
+              <td>Upload</td>
+              <td><input type="radio" name="chk_info" value="crypto-config">crypto-config</td>
+              <td><input type="radio" name="chk_info" value="channel-artifacts">channel-artifacts</td>
+          </tr>
+          <tr>
+              <td>File</td>
+              <form method="POST" enctype="multipart/form-data" action="/uploadfile/">
+                <input type="file" name="file[]" multiple="">
+                <button type="submit">Submit</button>
+            </form>          
+         </tr> 
+
+          </form>
+     </table>
+</fieldset>
+
+</body>
+</html>
+
+

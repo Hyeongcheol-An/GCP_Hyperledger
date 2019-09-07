@@ -3,7 +3,6 @@ version: '2'
 volumes:
   orderer.example.com:
   peer0.org1.example.com:
-  peer1.org1.example.com:
  
 networks:
   byfn:
@@ -21,19 +20,18 @@ services:
       - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
       - CORE_PEER_CHAINCODEADDRESS=peer0.org1.example.com:7052
       - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org1.example.com:8051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org1.example.com:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.example.com:7051
       - CORE_PEER_LOCALMSPID=Org1MSP
     networks:
       - byfn
     extra_hosts:
-      - "orderer.example.com:${ORD}"
-      - "orderer.example2.com:${ORD}"
-      - "orderer.example3.com:${ORD}"
-      - "orderer.example4.com:${ORD}"
-      - "orderer.example5.com:${ORD}"
-      - "peer0.org2.example.com:${ORG2}"
-      - "peer1.org2.example.com:${ORG2}"
+      - "orderer0.example.com:${ORD}"
+      - "orderer1.example2.com:${ORD}"
+      - "orderer2.example3.com:${ORD}"
+      - "peer1.org1.example.com:${ORG12}"
+      - "peer0.org2.example.com:${ORG21}"
+      - "peer1.org2.example.com:${ORG22}"
     volumes:
       - /var/run/:/host/var/run/
       - ./crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp:/etc/hyperledger/fabric/msp
@@ -41,38 +39,6 @@ services:
       - peer0.org1.example.com:/var/hyperledger/production
     ports:
       - 7051:7051
- 
-  peer1.org1.example.com:
-    container_name: peer1.org1.example.com
-    extends:
-      file: docker-compose-base.yaml
-      service: peer-base
-    environment:
-      - CORE_PEER_ID=peer1.org1.example.com
-      - CORE_PEER_ADDRESS=peer1.org1.example.com:8051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:8051
-      - CORE_PEER_CHAINCODEADDRESS=peer1.org1.example.com:8052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:8052
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org1.example.com:8051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:7051
-      - CORE_PEER_LOCALMSPID=Org1MSP
-    networks:
-      - byfn
-    extra_hosts:
-      - "orderer.example.com:${ORD}"
-      - "orderer.example2.com:${ORD}"
-      - "orderer.example3.com:${ORD}"
-      - "orderer.example4.com:${ORD}"
-      - "orderer.example5.com:${ORD}"
-      - "peer0.org2.example.com:${ORG2}"
-      - "peer1.org2.example.com:${ORG2}"
-    volumes:
-      - /var/run/:/host/var/run/
-      - ./crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp:/etc/hyperledger/fabric/msp
-      - ./crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls:/etc/hyperledger/fabric/tls
-      - peer1.org1.example.com:/var/hyperledger/production
-    ports:
-      - 8051:8051
  
   cli:
     container_name: cli
@@ -102,14 +68,12 @@ services:
       - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
     depends_on:
       - peer0.org1.example.com
-      - peer1.org1.example.com
     networks:
       - byfn
     extra_hosts:
-      - "orderer.example.com:${ORD}"
-      - "orderer.example2.com:${ORD}"
-      - "orderer.example3.com:${ORD}"
-      - "orderer.example4.com:${ORD}"
-      - "orderer.example5.com:${ORD}"
-      - "peer0.org2.example.com:${ORG2}"
-      - "peer1.org2.example.com:${ORG2}"
+      - "orderer0.example.com:${ORD}"
+      - "orderer1.example2.com:${ORD}"
+      - "orderer2.example3.com:${ORD}"
+      - "peer1.org1.example.com:${ORG12}"
+      - "peer0.org2.example.com:${ORG21}"
+      - "peer1.org2.example.com:${ORG22}"

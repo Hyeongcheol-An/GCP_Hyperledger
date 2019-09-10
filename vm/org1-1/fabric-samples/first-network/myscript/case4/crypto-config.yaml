@@ -3,24 +3,37 @@ OrdererOrgs:
     Domain: example.com
     Specs:
       - Hostname: orderer
+        SANS:
+          - 34.66.226.174
       - Hostname: orderer2
+        SANS:
+          - 34.67.110.38
       - Hostname: orderer3
-      - Hostname: orderer4
-      - Hostname: orderer5
-
+        SANS:
+          - 35.232.221.188
 
 PeerOrgs:
   - Name: Org1
     Domain: org1.example.com
     EnableNodeOUs: true
-    Template:
-      Count: 2
+    Specs:
+      - Hostname: peer0
+        SANS:
+          - 34.66.226.174
+      - Hostname: peer1
+        SANS:
+          - 34.67.110.38
     Users:
       Count: 1
   - Name: Org2
     Domain: org2.example.com
     EnableNodeOUs: true
-    Template:
-      Count: 2
+    Specs:
+      - Hostname: peer0
+        SANS:
+          - 35.232.221.188
+      - Hostname: peer1
+        SANS:
+          - 35.222.162.181
     Users:
       Count: 1

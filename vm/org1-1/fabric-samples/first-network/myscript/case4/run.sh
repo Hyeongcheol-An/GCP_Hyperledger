@@ -7,12 +7,12 @@ rm -rf channel-artifacts
 mkdir channel-artifacts
 export FABRIC_CFG_PATH=$PWD
 
-../../../bin/configtxgen -profile SampleMultiNodeEtcdRaft -channelID byfn -outputBlock ./channel-artifacts/genesis.block
+../../../bin/configtxgen -profile TwoOrgsOrdererGenesisEtcdRaft -channelID test-channel -outputBlock ./channel-artifacts/genesis.block
 
-../../../bin/configtxgen -profile AllOrgsChannel -outputCreateChannelTx ./channel-artifacts/channel.tx -channelID mychannel
+../../../bin/configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ./channel-artifacts/channel1.tx -channelID channel1
 
-../../../bin/configtxgen -profile AllOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org1MSPanchors.tx -channelID mychannel -asOrg Org1MSP
-../../../bin/configtxgen -profile AllOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org2MSPanchors.tx -channelID mychannel -asOrg Org2MSP
+../../../bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org1MSPanchors.tx -channelID channel1 -asOrg Org1MSP
+../../../bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org2MSPanchors.tx -channelID channel1 -asOrg Org2MSP
 
 sleep 3
 

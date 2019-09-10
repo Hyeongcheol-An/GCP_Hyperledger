@@ -21,11 +21,11 @@ cd /home/an/GCP_Hyperledger/vm/org2-2/fabric-samples/first-network/myscript/case
 ./up.sh
 EOF
 
-echo '=======================Access the Orderer1 VM============================'
-sudo ssh -T -i ./tmp.pem an@35.232.167.182 << \EOF
-cd /home/an/GCP_Hyperledger/vm/orderer1/fabric-samples/first-network/myscript/case4
-./up.sh
-EOF
+# echo '=======================Access the Orderer1 VM============================'
+# sudo ssh -T -i ./tmp.pem an@35.232.167.182 << \EOF
+# cd /home/an/GCP_Hyperledger/vm/orderer1/fabric-samples/first-network/myscript/case4
+# ./up.sh
+# EOF
 
 
 echo '========================================================================='
@@ -50,12 +50,12 @@ cd /home/an/GCP_Hyperledger/vm/org2-2/fabric-samples/first-network/myscript/case
 docker ps -a
 EOF
 
-echo '=======================Access the Orderer1 VM============================'
-sudo ssh -T -i ./tmp.pem an@35.232.167.182 << \EOF
-cd /home/an/GCP_Hyperledger/vm/orderer1/fabric-samples/first-network/myscript/case4
-docker ps -a
-EOF
+# echo '=======================Access the Orderer1 VM============================'
+# sudo ssh -T -i ./tmp.pem an@35.232.167.182 << \EOF
+# cd /home/an/GCP_Hyperledger/vm/orderer1/fabric-samples/first-network/myscript/case4
+# docker ps -a
+# EOF
 
-echo '========================================================================='
-echo '============================End Connection==============================='
-echo '========================================================================='
+# echo '========================================================================='
+# echo '============================End Connection==============================='
+# echo '========================================================================='

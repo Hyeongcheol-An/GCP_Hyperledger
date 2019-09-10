@@ -14,13 +14,13 @@ cd /home/an/GCP_Hyperledger/vm/org2-1/fabric-samples/first-network/myscript/case
 ./channel-join.sh
 EOF
 
-echo '========================================================================='
-echo '=======================Access the Orderer1 VM============================'
-echo '========================================================================='
-sudo ssh -T -i ./tmp.pem an@35.232.167.182 << \EOF
-cd /home/an/GCP_Hyperledger/vm/orderer1/fabric-samples/first-network/myscript/case4
-./channel-join.sh
-EOF
+# echo '========================================================================='
+# echo '=======================Access the Orderer1 VM============================'
+# echo '========================================================================='
+# sudo ssh -T -i ./tmp.pem an@35.232.167.182 << \EOF
+# cd /home/an/GCP_Hyperledger/vm/orderer1/fabric-samples/first-network/myscript/case4
+# ./channel-join.sh
+# EOF
 
 echo '========================================================================='
 echo '============================End Connection==============================='

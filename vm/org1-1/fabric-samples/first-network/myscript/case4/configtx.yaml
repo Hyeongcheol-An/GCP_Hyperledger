@@ -66,7 +66,7 @@ Organizations:
                 Rule: "OR('Org2MSP.peer')"
         AnchorPeers:
             - Host: peer0.org2.example.com
-              Port: 9051
+              Port: 7051
  
 Capabilities:
     Channel: &ChannelCapabilities
@@ -100,17 +100,30 @@ Application: &ApplicationDefaults
     Capabilities:
         <<: *ApplicationCapabilities
 Orderer: &OrdererDefaults
-    OrdererType: solo
+    OrdererType: etcdraft
+    EtcdRaft:
+        Consenters:
+        - Host: orderer.example.com
+          Port: 7050
+          ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
+          ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
+        - Host: orderer2.example.com
+          Port: 7050
+          ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt
+          ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt
+        - Host: orderer3.example.com
+          Port: 7050
+          ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
+          ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
     Addresses:
         - orderer.example.com:7050
+        - orderer2.example.com:7050
+        - orderer3.example.com:7050
     BatchTimeout: 2s
     BatchSize:
         MaxMessageCount: 10
         AbsoluteMaxBytes: 99 MB
         PreferredMaxBytes: 512 KB
-    Kafka:
-        Brokers:
-            - 127.0.0.1:9092
     Organizations:
     Policies:
         Readers:
@@ -142,7 +155,7 @@ Channel: &ChannelDefaults
  
 Profiles:
  
-    TwoOrgsOrdererGenesis:
+    TwoOrgsOrdererGenesisEtcdRaft:
         <<: *ChannelDefaults
         Orderer:
             <<: *OrdererDefaults
@@ -150,110 +163,22 @@ Profiles:
                 - *OrdererOrg
             Capabilities:
                 <<: *OrdererCapabilities
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - <<: *OrdererOrg
         Consortiums:
             SampleConsortium:
                 Organizations:
                     - *Org1
                     - *Org2
-    OneOrgsChannel:
-        Consortium: SampleConsortium
-        <<: *ChannelDefaults
-        Application:
-            <<: *ApplicationDefaults
-            Organizations:
-                - *Org1
-            Capabilities:
-                <<: *ApplicationCapabilities
     TwoOrgsChannel:
         Consortium: SampleConsortium
         <<: *ChannelDefaults
         Application:
             <<: *ApplicationDefaults
             Organizations:
-                - *Org2
-            Capabilities:
-                <<: *ApplicationCapabilities
-    AllOrgsChannel:
-        Consortium: SampleConsortium
-        <<: *ChannelDefaults
-        Application:
-            <<: *ApplicationDefaults
-            Organizations:
                 - *Org1
                 - *Org2
             Capabilities:
                 <<: *ApplicationCapabilities
- 
-    SampleDevModeKafka:
-        <<: *ChannelDefaults
-        Capabilities:
-            <<: *ChannelCapabilities
-        Orderer:
-            <<: *OrdererDefaults
-            OrdererType: kafka
-            Kafka:
-                Brokers:
-                - kafka.example.com:9092
- 
-            Organizations:
-            - *OrdererOrg
-            Capabilities:
-                <<: *OrdererCapabilities
-        Application:
-            <<: *ApplicationDefaults
-            Organizations:
-            - <<: *OrdererOrg
-        Consortiums:
-            SampleConsortium:
-                Organizations:
-                - *Org1
-                - *Org2
- 
-    SampleMultiNodeEtcdRaft:
-        <<: *ChannelDefaults
-        Capabilities:
-            <<: *ChannelCapabilities
-        Orderer:
-            <<: *OrdererDefaults
-            OrdererType: etcdraft
-            EtcdRaft:
-                Consenters:
-                - Host: orderer.example.com
-                  Port: 7050
-                  ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
-                  ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
-                - Host: orderer2.example.com
-                  Port: 7050
-                  ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt
-                  ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt
-                - Host: orderer3.example.com
-                  Port: 7050
-                  ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
-                  ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
-                - Host: orderer4.example.com
-                  Port: 7050
-                  ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.crt
-                  ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.crt
-                - Host: orderer5.example.com
-                  Port: 7050
-                  ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/server.crt
-                  ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/server.crt
-            Addresses:
-                - orderer.example.com:7050
-                - orderer2.example.com:7050
-                - orderer3.example.com:7050
-                - orderer4.example.com:7050
-                - orderer5.example.com:7050
-            Organizations:
-            - *OrdererOrg
-            Capabilities:
-                <<: *OrdererCapabilities
-        Application:
-            <<: *ApplicationDefaults
-            Organizations:
-            - <<: *OrdererOrg
-        Consortiums:
-            SampleConsortium:
-                Organizations:
-                - *Org1
-                - *Org2

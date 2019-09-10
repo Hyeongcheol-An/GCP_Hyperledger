@@ -7,7 +7,7 @@ rm -rf channel-artifacts
 mkdir channel-artifacts
 export FABRIC_CFG_PATH=$PWD
 
-../../../bin/configtxgen -profile TwoOrgsOrdererGenesis -channelID byfn -outputBlock ./channel-artifacts/genesis.block
+../../../bin/configtxgen -profile TwoOrgsOrdererGenesisEtcdRaft -channelID byfn -outputBlock ./channel-artifacts/genesis.block
 
 ../../../bin/configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ./channel-artifacts/channel1.tx -channelID channel1
 

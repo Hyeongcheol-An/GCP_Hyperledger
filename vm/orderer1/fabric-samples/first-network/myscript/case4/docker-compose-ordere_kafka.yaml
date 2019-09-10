@@ -133,10 +133,10 @@ services:
       - ORDERER_ABSOLUTEMAXBYTES=10 MB
       - ORDERER_PREFERREDMAXBYTES=512 KB
     extra_hosts:
-      - "peer0.org1.example.com:${ORG11}"
-      - "peer1.org1.example.com:${ORG12}"
-      - "peer0.org2.example.com:${ORG21}"
-      - "peer1.org2.example.com:${ORG22}"
+      - "peer0.org1.example.com:${ORG1}"
+      - "peer1.org1.example.com:${ORG1}"
+      - "peer0.org2.example.com:${ORG2}"
+      - "peer1.org2.example.com:${ORG2}"
     depends_on:
       - zookeeper0
       - zookeeper1
@@ -170,10 +170,10 @@ services:
       - ORDERER_ABSOLUTEMAXBYTES=10 MB
       - ORDERER_PREFERREDMAXBYTES=512 KB
     extra_hosts:
-      - "peer0.org1.example.com:${ORG11}"
-      - "peer1.org1.example.com:${ORG12}"
-      - "peer0.org2.example.com:${ORG21}"
-      - "peer1.org2.example.com:${ORG22}"
+      - "peer0.org1.example.com:${ORG1}"
+      - "peer1.org1.example.com:${ORG1}"
+      - "peer0.org2.example.com:${ORG2}"
+      - "peer1.org2.example.com:${ORG2}"
     depends_on:
       - zookeeper0
       - zookeeper1
@@ -207,10 +207,10 @@ services:
       - ORDERER_ABSOLUTEMAXBYTES=10 MB
       - ORDERER_PREFERREDMAXBYTES=512 KB
     extra_hosts:
-      - "peer0.org1.example.com:${ORG11}"
-      - "peer1.org1.example.com:${ORG12}"
-      - "peer0.org2.example.com:${ORG21}"
-      - "peer1.org2.example.com:${ORG22}"
+      - "peer0.org1.example.com:${ORG1}"
+      - "peer1.org1.example.com:${ORG1}"
+      - "peer0.org2.example.com:${ORG2}"
+      - "peer1.org2.example.com:${ORG2}"
     depends_on:
       - zookeeper0
       - zookeeper1

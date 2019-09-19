@@ -7,19 +7,28 @@ export CORE_PEER_LOCALMSPID="Org1MSP"
 export CORE_PEER_TLS_ROOTCERT_FILE=/home/an/GCP_Hyperledger/vm/org1-1/fabric-samples/first-network/myscript/case4/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
 export CORE_PEER_MSPCONFIGPATH=/home/an/GCP_Hyperledger/vm/org1-1/fabric-samples/first-network/myscript/case4/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
 export CORE_PEER_ADDRESS=peer0.org1.example.com:7051
-export GOPATH=/opt/gopath
 
-# peer chaincode install -n mycc -v 0 -p "/fabcar/go"
+# peer chaincode list --installed
 
-# ../../../bin/peer lifecycle chaincode package mycc.tar.gz --path abstore/go/ --lang golang --label mycc_1
-# peer lifecycle chaincode package mycc.tar.gz --path ../../chaincode/marbles02/go --lang golang --label mycc_1
-# peer chaincode install -n myNewCC -v 1.0 -p 
-# peer lifecycle chaincode package mycc.tar.gz --path github.com/chaincode/abstore/go/ --lang golang --label mycc_1
+peer chaincode install -n fabcar -v 1 -l golang -p fabcar/go
 
-echo $GOPATH
+export CORE_PEER_LOCALMSPID="Org1MSP"
+export CORE_PEER_TLS_ROOTCERT_FILE=/home/orderer/fabric-samples/first-network/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt
+export CORE_PEER_MSPCONFIGPATH=/home/orderer/fabric-samples/first-network/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+export CORE_PEER_ADDRESS=peer1.org1.example.com:7051
 
+peer chaincode install -n fabcar -v 0 -l golang -p fabcar/go
 
-peer chaincode list --installed
+export CORE_PEER_LOCALMSPID="Org2MSP"
+export CORE_PEER_TLS_ROOTCERT_FILE=/home/orderer/fabric-samples/first-network/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
+export CORE_PEER_MSPCONFIGPATH=/home/orderer/fabric-samples/first-network/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
+export CORE_PEER_ADDRESS=peer0.org2.example.com:7051
 
-# peer chaincode install -n marbles02 -v 1 -l golang -p marbles02/go
-peer chaincode install -n evmcc -l golang -v 0 -p github.com/hyperledger/fabric-chaincode-evm/evmcc
+peer chaincode install -n fabcar -v 0 -l golang -p fabcar/go
+
+export CORE_PEER_LOCALMSPID="Org2MSP"
+export CORE_PEER_TLS_ROOTCERT_FILE=/home/orderer/fabric-samples/first-network/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt
+export CORE_PEER_MSPCONFIGPATH=/home/orderer/fabric-samples/first-network/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
+export CORE_PEER_ADDRESS=peer1.org2.example.com:7051
+
+peer chaincode install -n fabcar -v 0 -l golang -p fabcar/go

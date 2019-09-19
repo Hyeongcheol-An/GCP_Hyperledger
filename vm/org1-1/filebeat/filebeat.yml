@@ -1,0 +1,21 @@
+filebeat.inputs:
+
+        - type: docker
+          combine_partial: true
+          containers:
+                  path: "/var/lib/docker/containers"
+
+                  ids:
+                          - "*"
+                  include_lines: ['/peer0.org1.example.com/', '/orderer.example.com/']
+
+filebeat.config.modules:
+        enabled: true
+        path: ${path.config}/modules.d/*.yml
+
+setup.template.settings:
+        index.number_of_shards: 1
+
+output.logstash:
+        hosts: ["35.232.167.182:5044"]
+
